@@ -10,13 +10,11 @@ headerss = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit
 page = requests.get('https://merojob.com/category/it-telecommunication/')
 soup = BeautifulSoup(page.content,"lxml")
 title = soup.find_all('div', class_='card-body')
-titlelist =[]
+titlelist = []
 for each in title:
     for each1 in each.find_all('h1'):
         for each2 in each1.find_all('a'):
             titlelist.append(each2.text)
-
-
 cleaned_title = [job.strip() for job in titlelist]
 print(cleaned_title)
 
