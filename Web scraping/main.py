@@ -1,14 +1,9 @@
 # import pandas as pd
 # import numpy as np
 import requests
-
 from bs4 import BeautifulSoup
 from time import sleep
 from random import randint
-
-
-
-
 titlelist = []
 company=[]
 
@@ -26,7 +21,9 @@ for page in range(1, 6):
             for view2 in view.find_all('a'):
                 company.append(view2.text)
 
+
      sleep(randint(2,10))
+
 cleaned_title = [job.strip() for job in titlelist]
 cleaned_company =[companys.strip() for companys in company]
 # print(cleaned_title)
