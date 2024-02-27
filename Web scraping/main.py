@@ -5,10 +5,6 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 from random import randint
-
-
-
-
 titlelist = []
 company=[]
 views=[]
@@ -36,28 +32,33 @@ for page in range(1, 6):
 
 
     footer_card = soup.find_all('div',class_="card-footer py-2")
+    
     for view in footer_card:
         for view1 in view.find_all('span',class_="text-primary mr-2"):
             views.append(view1.text)
 
-      # sleep(randint(2,10))
 
 
+     sleep(randint(2,10))
+    
 cleaned_title = [job.strip() for job in titlelist]
+
 cleaned_company =[companys.strip() for companys in company]
+
 cleaned_view = [view.replace('Views: ','').strip() for view in views]
 
 
 dict = {'job title': cleaned_title,'Company':cleaned_company,'View':cleaned_view}
 
 df = pd.DataFrame(dict)
+
 df.to_excel('job.xlsx')
+
 print(df)
 
 
 
 
 
-#%%
 
-#%%
+
