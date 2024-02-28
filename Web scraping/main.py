@@ -17,12 +17,12 @@ def data_extract():
         headerss = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'Accept-langauge': 'en-US, en;q=0.5'}
         request = requests.get('https://merojob.com/category/it-telecommunication/?page='+str(page))
         soup = BeautifulSoup(request.content,"lxml")
+
         title = soup.find_all('div', class_='card-body')
 
         for each in title:
-            for each1 in each.find_all('h1'):
-                for each2 in each1.find_all('a'):
-                    titlelist.append(each2.text)
+            [titlelist.append(each2.text) for each1 in each.find_all('h1') for each2 in each1.find_all('a')]
+
 
             for company1 in each.find_all('h3'):
                 a = company1.find('a')
@@ -33,13 +33,10 @@ def data_extract():
                     if span:
                         company.append(span.text)
 
-
         footer_card = soup.find_all('div',class_="card-footer py-2")
-        for view in footer_card:
-            for view1 in view.find_all('span',class_="text-primary mr-2"):
-                views.append(view1.text)
+        [views.append(view1.text) for view in footer_card for view1 in view.find_all('span',class_="text-primary mr-2")]
 
-           sleep(randint(2,7))
+           # sleep(randint(2,7))
 
 data_extract()
 def data_transform():
