@@ -11,6 +11,7 @@ titlelist = []
 company=[]
 views=[]
 
+# Function for Extracting the data from the website
 def data_extract():
     for page in range(1, 6):
 
@@ -39,6 +40,9 @@ def data_extract():
            # sleep(randint(2,7))
 
 data_extract()
+
+
+#Function for transforming and cleaning the extracted data
 def data_transform():
 
     cleaned_title = [job.strip() for job in titlelist]
@@ -49,6 +53,8 @@ def data_transform():
 
 dict = {'job title': data_transform()[0] ,'Company':data_transform()[1],'View':data_transform()[2]}
 
+
+# Function for loading the data in excel format
 def data_load():
     df = pd.DataFrame(dict)
     df.to_excel('job.xlsx')
