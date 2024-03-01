@@ -37,13 +37,9 @@ def data_extract():
         footer_card = soup.find_all('div',class_="card-footer py-2")
         [views.append(view1.text) for view in footer_card for view1 in view.find_all('span',class_="text-primary mr-2")]
 
-           # sleep(randint(2,7))
 
-    footer_card = soup.find_all('div',class_="card-footer py-2")
-    
-    for view in footer_card:
-        for view1 in view.find_all('span',class_="text-primary mr-2"):
-            views.append(view1.text)
+
+
 
 
 data_extract()
@@ -56,15 +52,8 @@ def data_transform():
     cleaned_company =[companys.strip() for companys in company]
     cleaned_view = [view.replace('Views: ','').strip() for view in views]
 
-     sleep(randint(2,10))
-    
-cleaned_title = [job.strip() for job in titlelist]
 
-cleaned_company =[companys.strip() for companys in company]
-
-cleaned_view = [view.replace('Views: ','').strip() for view in views]
-
-    return cleaned_title, cleaned_company, cleaned_view
+     return cleaned_title, cleaned_company, cleaned_view
 
 dict = {'job title': data_transform()[0] ,'Company':data_transform()[1],'View':data_transform()[2]}
 
