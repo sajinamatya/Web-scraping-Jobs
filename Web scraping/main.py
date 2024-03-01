@@ -7,12 +7,11 @@ from time import sleep
 from random import randint
 
 
-
 titlelist = []
 company=[]
 views=[]
 
-# Function for Extracting the data from the website
+# Function for Extracting the data from the website using bs4
 def data_extract():
     for page in range(1, 6):
 
