@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 from random import randint
 
-
+# List
 titlelist = []
 company=[]
 views=[]
@@ -55,12 +55,13 @@ def data_transform():
 
      return cleaned_title, cleaned_company, cleaned_view
 
-dict = {'job title': data_transform()[0] ,'Company':data_transform()[1],'View':data_transform()[2]}
+#Dictionary
+dict_job = {'job title': data_transform()[0] ,'Company':data_transform()[1],'View':data_transform()[2]}
 
 
 # Function for loading the data in excel format
 def data_load():
-    df = pd.DataFrame(dict)
+    df = pd.DataFrame(dict_job)
     df.to_excel('job.xlsx')
     return df
 print(data_load())
