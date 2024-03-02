@@ -1,6 +1,4 @@
 import pandas as pd
-import numpy as np
-import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from time import sleep
@@ -36,11 +34,7 @@ def data_extract():
 
         footer_card = soup.find_all('div',class_="card-footer py-2")
         [views.append(view1.text) for view in footer_card for view1 in view.find_all('span',class_="text-primary mr-2")]
-
-
-
-
-
+        sleep(randint(2,6))
 
 data_extract()
 
@@ -52,10 +46,9 @@ def data_transform():
     cleaned_company =[companys.strip() for companys in company]
     cleaned_view = [view.replace('Views: ','').strip() for view in views]
 
+    return cleaned_title, cleaned_company, cleaned_view
 
-     return cleaned_title, cleaned_company, cleaned_view
-
-#Dictionary
+# Dictionary
 dict_job = {'job title': data_transform()[0] ,'Company':data_transform()[1],'View':data_transform()[2]}
 
 
@@ -66,14 +59,6 @@ def data_load():
     return df
 print(data_load())
 
-
-
-df = pd.DataFrame(dict)
-
-df.to_excel('job.xlsx')
-
-
-print(df)
 
 
 
