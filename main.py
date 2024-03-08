@@ -34,13 +34,16 @@ def data_extract():
                         company.append(span.text)
 
         footer_card = soup.find_all('div',class_="card-footer py-2")
+
         [views.append(view1.text) for view in footer_card for view1 in view.find_all('span',class_="text-primary mr-2")]
+
         sleep(randint(2,6))
 
 data_extract()
 
 
 #Function for transforming and cleaning the extracted data
+
 def data_transform():
 
     cleaned_title = [job.strip() for job in titlelist]
@@ -49,7 +52,7 @@ def data_transform():
 
     return cleaned_title, cleaned_company, cleaned_view
 
-# Dictionary
+# Dictionary for storing the data extracted from scraping
 dict_job = {'job title': data_transform()[0] ,'Company':data_transform()[1],'View':data_transform()[2]}
 
 
