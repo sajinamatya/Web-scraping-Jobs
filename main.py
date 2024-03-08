@@ -48,7 +48,6 @@ def data_transform():
 
     return cleaned_title, cleaned_company, cleaned_view
 
-# Dictionary
 dict_job = {'job title': data_transform()[0] ,'Company':data_transform()[1],'View':data_transform()[2]}
 
 
