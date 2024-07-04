@@ -12,6 +12,17 @@ views=[]
 
 # Function for Extracting the data from the website using bs4
 def data_extract():
+    """
+    Extract the job title, company name and view counts from 6 different page of the website  using beautiful soup module with the time delay
+    and stores the data in the list for further processing  
+    
+    :param : None
+    :return : None 
+
+    >>> data_extract()
+    perform the operation
+    """
+    
     for page in range(1, 6):
 
         headerss = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'Accept-langauge': 'en-US, en;q=0.5'}
@@ -45,7 +56,14 @@ data_extract()
 #Function for transforming and cleaning the extracted data
 
 def data_transform():
+    """
+    This function transform the data into cleaned data by removing the whitespaces
+    :param:None
+    :return : cleaned title, company, and view data in the form of list 
 
+    >>> data_transform()
+    perform data transformation 
+    """
     cleaned_title = [job.strip() for job in titlelist]
     cleaned_company =[companys.strip() for companys in company]
     cleaned_view = [view.replace('Views: ','').strip() for view in views]
@@ -58,6 +76,11 @@ dict_job = {'job title': data_transform()[0] ,'Company':data_transform()[1],'Vie
 
 # Function for loading the data in excel format
 def data_load():
+    """ 
+    After data is  collected and transformed, it is converted into pandas dataframe and further loaded in the excel file 
+    :param:None
+    :return : dataframe 
+    """
     df = pd.DataFrame(dict_job)
     df.to_excel('job.xlsx')
     return df
