@@ -13,7 +13,7 @@ views=[]
 # Function for Extracting the data from the website using bs4
 def data_extract():
     """
-    Extract the job title, company name and view counts from 6 different page of the website  using beautiful soup module with the time delay
+    Extracting the job title, company name and view counts from 6 different page of the website  using beautiful soup module with the time delay
     and stores the data in the list for further processing  
     
     :param : None
