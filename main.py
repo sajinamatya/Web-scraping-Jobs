@@ -57,7 +57,7 @@ data_extract()
 
 def data_transform():
     """
-    This function transform the data into cleaned data by removing the whitespaces
+    Transform the current data into cleaned data by removing the whitespaces
     :param:None
     :return : cleaned title, company, and view data in the form of list 
 
