@@ -9,7 +9,7 @@ from random import randint
 titlelist = []
 company=[]
 views=[]
-
+#implementation of airflow in progress 
 # Function for Extracting the data from the website using bs4
 def data_extract():
     """
