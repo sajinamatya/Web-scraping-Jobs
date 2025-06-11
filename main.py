@@ -1,10 +1,11 @@
-
+from airflow import DAG
+from airflow.providers.standard.operators.python import PythonOperator #for airflow etl workflow 
 import pandas as pd
-import requests
+import requests 
 from bs4 import BeautifulSoup
 from time import sleep
 from random import randint
-
+from datetime import datetime
 # List
 titlelist = []
 company=[]
@@ -87,10 +88,40 @@ def data_load():
 print(data_load())
 
 
+# initalization of default argument
+default_args = {
+    'owner': 'airflow'
+}
+# initializtion of DAG worflow
+with DAG(
+    dag_id='web_job_scraping_dag',
+    default_args=default_args,
+    start_date=datetime(2025, 6, 9),
+    schedule_interval=None,
+    catchup=False
+) as dag:
 
 
+    # extraction task
+    extract_task = PythonOperator(
+            task_id='extract_task',
+            python_callable=data_extract
+            
+            )
+    # transformation task
+    transform_task = PythonOperator(
+            task_id='transform_task',
+            python_callable=data_transform
+        )
 
+    #loading Task
 
+    load_task = PythonOperator(
+            task_id='load_task',
+            python_callable=data_load
+        )
+
+extract_task >> transform_task >> load_task
 
 
 
