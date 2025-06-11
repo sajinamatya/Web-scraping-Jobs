@@ -31,11 +31,11 @@ def data_extract():
         soup = BeautifulSoup(request.content,"lxml")
 
         title = soup.find_all('div', class_='card-body')
-
+        #iterating through the job title h1
         for each in title:
             [titlelist.append(each2.text) for each1 in each.find_all('h1') for each2 in each1.find_all('a')]
 
-
+            #iterating through the company name h3 
             for company1 in each.find_all('h3'):
                 a = company1.find('a')
                 if a:
@@ -44,9 +44,10 @@ def data_extract():
                     span = company1.find('span')
                     if span:
                         company.append(span.text)
-
+                        
+        #iterating through the footer card for view count
         footer_card = soup.find_all('div',class_="card-footer py-2")
-
+        #iterating through the view count span
         [views.append(view1.text) for view in footer_card for view1 in view.find_all('span',class_="text-primary mr-2")]
 
         sleep(randint(2,6))
@@ -65,9 +66,10 @@ def data_transform():
     >>> data_transform()
     perform data transformation 
     """
+    # Cleaning the data by removing the whitespaces
     cleaned_title = [job.strip() for job in titlelist]
-    cleaned_company =[companys.strip() for companys in company]
-    cleaned_view = [view.replace('Views: ','').strip() for view in views]
+    cleaned_company =[companys.strip() for companys in company] #  removing the whitespaces from company name
+    cleaned_view = [view.replace('Views: ','').strip() for view in views] # removing the 'Views: ' from the view count and stripping the whitespaces
 
     return cleaned_title, cleaned_company, cleaned_view
 
