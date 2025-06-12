@@ -1,8 +1,8 @@
-from airflow import DAG
-from airflow.providers.standard.operators.python import PythonOperator #for airflow etl workflow 
-import pandas as pd
-import requests 
-from bs4 import BeautifulSoup
+from airflow import DAG # for defining airflow task 
+from airflow.providers.standard.operators.python import PythonOperator #for airflow ETL workflow 
+import pandas as pd    # for data cleaning and manipulation 
+import requests  # for getting request from the target site 
+from bs4 import BeautifulSoup    # web scraping tools 
 from time import sleep
 from random import randint
 from datetime import datetime
@@ -10,8 +10,8 @@ from datetime import datetime
 titlelist = []
 company=[]
 views=[]
-#implementation of airflow in progress 
-# Function for Extracting the data from the website using bs4
+
+# Function for extracting the data from the website using bs4
 def data_extract():
     """
     Extracting the job title, company name and view counts from 6 different page of the website  using beautiful soup module with the time delay
