@@ -90,11 +90,11 @@ def data_load():
 print(data_load())
 
 
-# initalization of default argument
+# initialisation of default argument
 default_args = {
     'owner': 'airflow'
 }
-# initializtion of DAG worflow
+# initialisation of DAG workflow
 with DAG(
     dag_id='web_job_scraping_dag',
     default_args=default_args,
@@ -123,6 +123,7 @@ with DAG(
             python_callable=data_load
         )
 
+# Task  dependencies 
 extract_task >> transform_task >> load_task
 
 
