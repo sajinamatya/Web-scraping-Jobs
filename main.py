@@ -123,6 +123,7 @@ with DAG(
             python_callable=data_load
         )
 
+# data task flows 
 extract_task >> transform_task >> load_task
 
 
