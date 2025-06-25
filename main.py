@@ -6,11 +6,13 @@ from bs4 import BeautifulSoup
 from time import sleep
 from random import randint
 from datetime import datetime
-# List
+
+# List to store the data 
 titlelist = []
 company=[]
 views=[]
-#implementation of airflow in progress 
+
+
 # Function for Extracting the data from the website using bs4
 def data_extract():
     """
