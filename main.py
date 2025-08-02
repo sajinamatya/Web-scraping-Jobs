@@ -103,6 +103,7 @@ with DAG(
     start_date=datetime(2025, 6, 9),
     schedule_interval=None,
     catchup=False
+    description='ETL DAG workflow'
 ) as dag:
 
 
@@ -126,6 +127,7 @@ with DAG(
         )
 
 extract_task >> transform_task >> load_task
+
 
 
 
